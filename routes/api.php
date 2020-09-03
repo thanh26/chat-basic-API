@@ -32,4 +32,7 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::group(['middleware' => ['auth:api']], function() {
     Route::resource('rooms', 'Api\RoomController');
+
+    Route::get('messages/{room}', 'Api\MessageController@getMessagesByRoom');
+    Route::post('messages', 'Api\MessageController@store');
 });
