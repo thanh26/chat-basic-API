@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorageMessageRequest;
+use App\Http\Resources\MessageCollection;
+use App\Models\Message;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -28,14 +31,16 @@ class MessageController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StorageMessageRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(StorageMessageRequest $request)
     {
-        //
+        Message::create($request->all());
+
+        return response()->json([
+            'message' => 'Successfully created room!'
+        ], 201);
     }
 
     /**
@@ -81,5 +86,12 @@ class MessageController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getMessagesByRoom($room)
+    {
+        $messages = Message::where('room_id', $room)->latest()->get();
+
+        return new MessageCollection($messages);
     }
 }

@@ -10,5 +10,6 @@ class Message extends Model
         'room_id',
         'user_id',
         'content',
+        'created_at'
     ];
 }

@@ -44,7 +44,7 @@ class RoomController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'Successfully created user!'
+            'message' => 'Successfully created room!'
         ], 201);
     }
 
