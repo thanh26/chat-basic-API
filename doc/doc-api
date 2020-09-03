@@ -1,0 +1,12 @@
+Auth:
+    + login: post => auth/login
+        email: required, string
+        password: required, string
+        remember_me: boolean
+    + signUp: post => auth/sign-up
+        name: required, string
+        email: required, string
+        password: required, string
+        password_confirmation: required, string
+    + get user information: get => auth/user
+    + logout: get => auth/logout
