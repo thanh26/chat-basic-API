@@ -29,3 +29,7 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get('user', 'Api\AuthController@user');
     });
 });
+
+Route::group(['middleware' => ['auth:api']], function() {
+    Route::resource('rooms', 'Api\RoomController');
+});
